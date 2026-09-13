@@ -1,0 +1,27 @@
+const demoStyle = document.createElement('style');
+demoStyle.textContent = `.demo-button{border:0;background:#282a35;color:#fff;border-radius:99px;padding:10px 14px;font:600 11px inherit;cursor:pointer;box-shadow:0 5px 14px #282a3520}.demo-button:hover{background:#d77f61}.demo-step{position:fixed;left:50%;top:24px;transform:translateX(-50%) translateY(-20px);z-index:20;background:#282a35;color:#fff;border-radius:99px;padding:11px 18px;font-size:11px;opacity:0;transition:.3s;pointer-events:none}.demo-step.show{opacity:1;transform:translateX(-50%) translateY(0)}`;
+document.head.appendChild(demoStyle);
+const demoButton = document.createElement('button');
+demoButton.className = 'demo-button';
+demoButton.textContent = '▶ 90 秒演示';
+document.querySelector('.top-actions')?.prepend(demoButton);
+const step = document.createElement('div');
+step.className = 'demo-step';
+document.body.appendChild(step);
+const say = (text, duration = 1800) => { step.textContent = text; step.classList.add('show'); setTimeout(() => step.classList.remove('show'), duration); };
+demoButton.addEventListener('click', async () => {
+  demoButton.disabled = true;
+  say('01 · 读取知乎正在发生的讨论');
+  if (typeof loadZhihuHot === 'function') await loadZhihuHot();
+  await new Promise(resolve => setTimeout(resolve, 1500));
+  say('02 · 从内容里找到可以继续聊的人');
+  document.querySelector('.match-card')?.click();
+  await new Promise(resolve => setTimeout(resolve, 1700));
+  document.querySelector('.shared-action')?.click();
+  await new Promise(resolve => setTimeout(resolve, 1200));
+  say('03 · 把一次互动变成一条关系线');
+  document.querySelector('[data-view="roundtable"]')?.click();
+  await new Promise(resolve => setTimeout(resolve, 2200));
+  say('完成 · 进入你的第一场观点圆桌', 2400);
+  demoButton.disabled = false;
+});

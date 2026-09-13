@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>知音局 · 找到真正同频的人</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style-overrides.css" />
+    <link rel="stylesheet" href="style-interactions.css" />
+    <link rel="stylesheet" href="activity.css" />
+    <link rel="stylesheet" href="corporate.css" />
+    <link rel="stylesheet" href="frontend-design-pro.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand"><div class="brand-mark">知</div><div><b>知音局</b><span>让观点彼此遇见</span></div></div>
+        <nav class="nav">
+          <button class="nav-item active" data-view="match"><span>✦</span> 今日匹配</button>
+          <button class="nav-item" data-view="roundtable"><span>◉</span> 观点圆桌</button>
+          <button class="nav-item" data-view="profile"><span>◌</span> 我的画像</button>
+        </nav>
+        <div class="sidebar-tip"><div class="tip-orb">✳</div><b>今天的连接</b><p>不是认识更多人，而是遇见真正想聊下去的人。</p></div>
+        <div class="user-mini"><div class="avatar me">林</div><div><b>林默</b><span>探索者 · 78% 完成</span></div><span class="dots">···</span></div>
+      </aside>
+      <main class="main">
+        <header class="topbar"><div><span class="eyebrow">TUESDAY · 09 SEP</span><h1 id="view-title">今日，和一个同频的人聊聊</h1></div><div class="top-actions"><button class="icon-btn" id="search-btn" aria-label="搜索知乎内容" title="搜索知乎与全网">⌕</button><button class="icon-btn" id="discover-btn" aria-label="打开今日线索" title="打开今日线索">♢</button><div class="avatar" id="top-avatar" role="button" tabindex="0" aria-label="打开我的画像">林</div></div></header>
+        <section id="match-view" class="view active-view">
+          <div class="hero-card"><div><span class="label peach">今日关系地图 · 09.09</span><h2>从一个共同问题，<br/><em>走到一场好对话</em></h2><p>你最近在想「如何把复杂的事讲清楚」。关系网里有 3 个兴趣群落，正在向你延伸。</p><button class="primary-btn" id="refresh-btn">换一张地图 <span>↗</span></button></div><div class="hero-art relationship-map network-map"><svg class="map-lines" viewBox="0 0 330 250" aria-hidden="true"><path d="M160 123 L77 53 L27 78"/><path d="M160 123 L77 53 L103 12"/><path d="M160 123 L251 52 L304 80"/><path d="M160 123 L251 52 L230 12"/><path d="M160 123 L78 193 L29 215"/><path d="M160 123 L78 193 L116 236"/><path d="M160 123 L250 193 L302 214"/><path d="M160 123 L250 193 L220 237"/><path d="M77 53 L27 78"/><path d="M251 52 L304 80"/><path d="M78 193 L29 215"/><path d="M250 193 L302 214"/><path d="M103 12 L230 12"/></svg><div class="map-node node-me">林</div><div class="map-node node-1">周</div><div class="map-node node-2">苏</div><div class="map-node node-3">K</div><div class="map-node node-4">A</div><div class="map-node node-5">米</div><div class="map-node node-6">乔</div><div class="map-node node-7">+</div><div class="map-node node-8">言</div><span class="map-caption cap-1">创作群落</span><span class="map-caption cap-2">城市观察</span><span class="map-caption cap-3">继续探索</span></div></div>
+          <div class="section-head"><div><span class="eyebrow">MATCHED FOR YOU</span><h3>今天值得认识的人 <span class="count">03</span></h3></div><button class="text-btn" id="match-all-btn">查看全部 <span>→</span></button></div>
+          <div class="match-grid" id="match-grid"></div>
+          <div class="insight-banner"><div class="insight-icon">⌁</div><div><b>一条关系线索</b><p>你们都在意「把复杂问题讲简单」，但经历和视角各不相同，刚好有继续聊下去的空间。</p></div><button class="text-btn" id="path-btn">看连接路径 →</button></div>
+        </section>
+        <section id="roundtable-view" class="view"><div class="section-head"><div><span class="eyebrow">LIVE DISCUSSION</span><h3>正在发生的观点圆桌</h3></div><button class="primary-btn small" id="join-btn">加入一个圆桌 <span>↗</span></button></div><div class="roundtable-hero"><div><span class="label mint">AI 主持中 · 12 人在线</span><h2>如果 AI 可以替你表达，<br/><em>你还会自己说吗？</em></h2><p>一场关于表达、代理与真实感的开放讨论。AI 会帮你找到共识，也会温柔地保留分歧。</p><button class="primary-btn" id="enter-roundtable">进入圆桌 <span>→</span></button></div><div class="people-orbit"><div class="big-orbit"></div><div class="people p1">周</div><div class="people p2">A</div><div class="people p3">苏</div><div class="people p4">K</div><div class="round-core">AI<br/><small>主持</small></div></div></div><div class="topic-list"><button class="topic topic-card" data-topic="年轻人需要一份稳定的工作吗？"><span class="topic-icon blue">⌁</span><span><b>年轻人需要一份稳定的工作吗？</b><p>8 人参与 · 观点正在收敛</p></span><span>→</span></button><button class="topic topic-card" data-topic="我们为什么越来越难交到朋友？"><span class="topic-icon pink">◒</span><span><b>我们为什么越来越难交到朋友？</b><p>16 人参与 · 3 个新分歧</p></span><span>→</span></button></div></section>
+        <section id="profile-view" class="view"><div class="profile-header"><div class="avatar profile-avatar">林</div><div><span class="eyebrow">YOUR POINT OF VIEW</span><h2>林默的观点画像</h2><p>最后更新于 2 分钟前 · 来自 28 条收藏和 12 次互动</p></div><button class="text-btn" id="edit-profile-btn">编辑画像 ✎</button></div><div class="profile-columns"><div class="panel"><div class="panel-title"><b>你的兴趣坐标</b><span>AI 提炼</span></div><div class="tag-cloud"><span class="tag strong">AI × 创作</span><span class="tag">长期主义</span><span class="tag">个人成长</span><span class="tag">城市生活</span><span class="tag">产品思维</span><span class="tag soft">心理学</span><span class="tag soft">阅读</span></div><div class="axis"><div><span>好奇心</span><b>92</b></div><div class="bar"><i style="width:92%"></i></div><div><span>深度偏好</span><b>84</b></div><div class="bar"><i style="width:84%"></i></div><div><span>表达开放度</span><b>76</b></div><div class="bar"><i style="width:76%"></i></div></div></div><div class="panel quote-panel"><span class="quote-mark">“</span><p>我喜欢先把问题想清楚，再认真地和一个人聊完。</p><div class="quote-footer"><span>你的表达签名</span><span class="mini-line"></span><span>知音局 AI</span></div></div></div></section>
+      </main>
+    </div>
+    <div class="toast" id="toast">正在用新的话题为你匹配…</div>
+    <script src="app.js"></script>
+    <script src="interactions.js"></script>
+    <script src="api-demo.js"></script>
+    <script src="auth-demo.js"></script>
+    <script src="demo-mode.js"></script>
+    <script src="behavior-copy.js"></script>
+    <script src="flashpoint.js"></script>
+    <script src="oauth-ui.js"></script>
+    <script src="button-actions.js"></script>
+  </body>
+</html>

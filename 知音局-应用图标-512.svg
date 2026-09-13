@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">知音局应用图标</title>
+  <desc id="desc">以关系网络为灵感的知音局应用图标，中心是知字，周围连接着观点节点。</desc>
+  <rect width="512" height="512" rx="112" fill="#f4f1e9"/>
+  <path d="M101 166 179 119M101 166l-8 116M179 119l78 43M179 119l-10-37M257 162l78-43M257 162l85 119M257 162l-5 122M335 119l76 48M335 119l-8-37M342 281l69-114M342 281l-90 3M252 284l-84-2M168 282l-75-116" fill="none" stroke="#718c80" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 13"/>
+  <circle cx="256" cy="223" r="78" fill="#193a34"/>
+  <circle cx="256" cy="223" r="92" fill="none" stroke="#d96d50" stroke-width="3"/>
+  <text x="256" y="251" text-anchor="middle" fill="#f4f1e9" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="76" font-weight="600">知</text>
+  <g stroke="#f4f1e9" stroke-width="9">
+    <circle cx="101" cy="166" r="21" fill="#f2b39d"/>
+    <circle cx="179" cy="119" r="21" fill="#bedccd"/>
+    <circle cx="335" cy="119" r="21" fill="#d7ccf2"/>
+    <circle cx="411" cy="167" r="21" fill="#b9d9e7"/>
+    <circle cx="93" cy="282" r="21" fill="#d7ccf2"/>
+    <circle cx="168" cy="282" r="21" fill="#f2b39d"/>
+    <circle cx="252" cy="287" r="21" fill="#bedccd"/>
+    <circle cx="342" cy="281" r="21" fill="#b9d9e7"/>
+  </g>
+  <path d="M171 403h170" stroke="#193a34" stroke-width="4" stroke-linecap="round"/>
+  <text x="256" y="447" text-anchor="middle" fill="#193a34" font-family="Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="28" letter-spacing="8">知音局</text>
+</svg>
