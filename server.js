@@ -34,7 +34,10 @@ async function zhihu(pathname, options = {}) {
   const text = await response.text();
   let data;
   try { data = JSON.parse(text); } catch { data = { raw: text }; }
-  if (!response.ok) throw new Error(`知乎 API ${response.status}: ${data.message || text.slice(0, 120)}`);
+  const code = data.Code ?? data.code;
+  if (!response.ok || (code !== undefined && Number(code) !== 0)) {
+    throw new Error(`知乎 API ${response.status}${code !== undefined ? ` / ${code}` : ''}: ${data.Message || data.message || text.slice(0, 120)}`);
+  }
   return data;
 }
 
@@ -53,7 +56,10 @@ async function zhihuUser(pathname, oauthToken, options = {}) {
   const text = await response.text();
   let data;
   try { data = JSON.parse(text); } catch { data = { raw: text }; }
-  if (!response.ok) throw new Error(`知乎用户 API ${response.status}: ${data.message || text.slice(0, 120)}`);
+  const code = data.Code ?? data.code;
+  if (!response.ok || (code !== undefined && Number(code) !== 0)) {
+    throw new Error(`知乎用户 API ${response.status}${code !== undefined ? ` / ${code}` : ''}: ${data.Message || data.message || text.slice(0, 120)}`);
+  }
   return data;
 }
 
@@ -111,7 +117,7 @@ function serveStatic(req, res) {
   fs.createReadStream(file).pipe(res);
 }
 
-const server = http.createServer(async (req, res) => {
+async function requestHandler(req, res) {
   const url = new URL(req.url, `http://${req.headers.host}`);
   try {
     if (url.pathname === '/api/oauth/config') {
@@ -188,6 +194,10 @@ const server = http.createServer(async (req, res) => {
   } catch (error) {
     sendJson(res, 502, { error: error.message, source: 'error' });
   }
-});
+}
 
-server.listen(port, () => console.log(`知音局 Demo running at http://localhost:${port}`));
+module.exports = requestHandler;
+
+if (require.main === module) {
+  http.createServer(requestHandler).listen(port, () => console.log(`知音局 Demo running at http://localhost:${port}`));
+}
