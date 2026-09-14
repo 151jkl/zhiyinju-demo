@@ -12,7 +12,7 @@ authButton.textContent = '连接知乎';
 topActions?.prepend(authButton);
 const modal = document.createElement('div');
 modal.className = 'auth-modal';
-modal.innerHTML = `<div class="auth-box"><h3>连接你的知乎账号</h3><p>只有完成知乎 OAuth 授权后，页面才会读取你的真实昵称、关注和收藏。我们不会用手填昵称或主页链接冒充登录。</p><div class="oauth-config-state" id="oauth-config-state">正在检查赛事 OAuth 配置…</div><div class="auth-actions"><button class="auth-cancel" id="auth-cancel">稍后再说</button><button class="primary-btn" id="auth-confirm">开始知乎授权 <span>↗</span></button></div><div class="auth-note">请将赛事 OAuth 回调地址登记为当前公网 HTTPS 地址；临时隧道重启后可能需要同步更新。</div></div>`;
+modal.innerHTML = `<div class="auth-box"><h3>连接你的知乎账号</h3><p>黑客松参赛作品已开通知乎 OAuth。点击后会跳转知乎官方授权页，完成授权后读取你的公开资料；用户无需另外申请 Access Secret。</p><div class="oauth-config-state" id="oauth-config-state">正在检查赛事 OAuth 配置…</div><div class="auth-actions"><button class="auth-cancel" id="auth-cancel">稍后再说</button><button class="primary-btn" id="auth-confirm">开始知乎授权 <span>↗</span></button></div><div class="auth-note">请将回调地址登记为当前公网 HTTPS 地址；临时隧道重启后可能需要同步更新赛事项目配置。</div></div>`;
 document.body.appendChild(modal);
 async function readOAuthConfig() {
   try {
@@ -29,7 +29,7 @@ async function showOAuthEntry() {
     return;
   }
   const state = modal.querySelector('#oauth-config-state');
-  if (state) state.textContent = '当前还没有配置赛事 OAuth App ID / App Key，暂时不能连接真实账号。';
+  if (state) state.textContent = '赛事 OAuth 凭证尚未配置。黑客松无需额外申请，请先从赛事项目页获取 App ID / App Key 并配置到服务端。';
   modal.classList.add('open');
 }
 authButton.addEventListener('click', showOAuthEntry);
@@ -41,5 +41,5 @@ modal.querySelector('#auth-confirm').addEventListener('click', async () => {
     return;
   }
   const state = modal.querySelector('#oauth-config-state');
-  if (state) state.textContent = '还不能开始授权：请先在 .env 填写赛事 OAuth App ID / App Key。';
+  if (state) state.textContent = '还不能开始授权：请先在部署平台环境变量中配置赛事 App ID / App Key。';
 });
