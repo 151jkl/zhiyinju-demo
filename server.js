@@ -19,6 +19,7 @@ const oauthAppId = process.env.ZHIHU_OAUTH_APP_ID || '';
 const oauthAppKey = process.env.ZHIHU_OAUTH_APP_KEY || '';
 const oauthRedirectUri = process.env.ZHIHU_OAUTH_REDIRECT_URI || `http://localhost:${port}/auth/zhihu/callback`;
 const sessions = new Map();
+let accountDataCache = { expiresAt: 0, value: null };
 
 function headers() {
   return {
@@ -101,6 +102,19 @@ async function exchangeCode(code) {
   return data;
 }
 
+async function loadAccountData() {
+  if (!secret) return { configured: false, source: 'demo', contents: null, followees: null, collections: null };
+  if (accountDataCache.value && accountDataCache.expiresAt > Date.now()) return accountDataCache.value;
+  const [contents, followees, collections] = await Promise.all([
+    zhihu('/api/v1/user/contents?ContentType=all&Limit=20&SortField=ts&SortOrder=desc'),
+    zhihu('/api/v1/user/followees?Limit=20'),
+    zhihu('/api/v1/user/collections?Limit=20')
+  ]);
+  const value = { configured: true, source: 'zhihu', contents, followees, collections, fetchedAt: new Date().toISOString() };
+  accountDataCache = { value, expiresAt: Date.now() + 5 * 60 * 1000 };
+  return value;
+}
+
 function sendJson(res, status, body) {
   res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'Access-Control-Allow-Origin': '*' });
   res.end(JSON.stringify(body));
@@ -122,6 +136,9 @@ async function requestHandler(req, res) {
   try {
     if (url.pathname === '/api/oauth/config') {
       return sendJson(res, 200, { configured: Boolean(oauthAppId && oauthAppKey), redirect_uri: oauthRedirectUri });
+    }
+    if (url.pathname === '/api/account-data') {
+      return sendJson(res, 200, await loadAccountData());
     }
     if (url.pathname === '/auth/zhihu/start') {
       if (!oauthAppId || !oauthAppKey) return sendJson(res, 503, { error: '尚未配置 ZHIHU_OAUTH_APP_ID / ZHIHU_OAUTH_APP_KEY', demo: true });
