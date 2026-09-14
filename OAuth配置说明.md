@@ -1,8 +1,8 @@
 # 知乎 OAuth 配置
 
-## 1. 获取赛事凭证
+## 1. 获取赛事凭证（无需额外申请）
 
-从黑客松页面获取 `App ID` 和 `App Key`：
+黑客松参赛作品默认开通 OAuth，不需要再提交通用 OAuth 申请。请从赛事项目页面获取本项目分配的 `App ID` 和 `App Key`：
 
 <https://www.zhihu.com/hackathon?activity_code=zhihu_hackathon_2026_p>
 
@@ -18,7 +18,7 @@ ZHIHU_OAUTH_APP_KEY=你的赛事AppKey
 ZHIHU_OAUTH_REDIRECT_URI=https://mall-objectives-thumbs-mem.trycloudflare.com/auth/zhihu/callback
 ```
 
-回调地址必须与赛事后台登记的地址完全一致，包括协议、域名、路径和尾部斜杠。当前使用的是临时公网隧道地址，隧道重启后地址可能变化，需要同步更新申请表和 `.env`。
+回调地址必须与赛事项目配置中登记的地址完全一致，包括协议、域名、路径和尾部斜杠。当前使用的是临时公网隧道地址，隧道重启后地址可能变化，需要同步更新赛事项目配置和 `.env`。
 
 ## 3. 启动
 
